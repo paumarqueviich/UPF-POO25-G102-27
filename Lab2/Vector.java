@@ -66,7 +66,7 @@ public class Vector {
         return Math.sqrt(sum);
     }
 
-    public double[] getValues() {     // ✅ <-- AGREGA ESTO
+    public double[] getValues() { 
         return values;
     }
 

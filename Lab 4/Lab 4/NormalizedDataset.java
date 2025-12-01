@@ -11,6 +11,7 @@ public class NormalizedDataset extends Dataset {
         this.maxOutput = maxOutput;
     }
 
+    @Override
     public Record transform(Record r) {
         int dim = minInput.getDim();
         double[] newInput = new double[dim];
@@ -24,4 +25,11 @@ public class NormalizedDataset extends Dataset {
         double newOutput = (r.getOutput() - minOutput) / rangeY;
         return new Record(new Vector(dim, newInput), newOutput);
     }
-} 
+
+    @Override
+    public double output(double yTransformed) {
+        double rangeY = maxOutput - minOutput;
+        if (rangeY == 0) rangeY = 1;
+        return yTransformed * rangeY + minOutput;
+    }
+}
